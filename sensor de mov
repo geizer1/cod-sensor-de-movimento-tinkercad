@@ -1,0 +1,54 @@
+int Alarme;
+int Led;
+int Power;
+int IV;
+int X;
+
+void setup()
+{
+  
+  Power = 2;
+  Sensor = 3;
+  Led = 4;
+  Alarme = 5;
+  
+  pinMode(Power, INPUT);
+  pinMode(Sensor, INPUT);
+  pinMode(Led, OUTPUT);
+  pinMode(Alarme, OUTPUT);
+  
+}
+
+void loop()
+{
+  
+  X = digitalRead(Power);
+  IV = digitalRead(Sensor);
+  
+  if (X == LOW) {
+    
+    if (IV == HIGH) {
+      
+      TocarAlarme(1);
+      
+    } else {
+      
+     noTone(Alarme); 
+      
+    }
+    
+  }
+  
+}
+
+void TocarAlarme(int Y) {
+  
+  tone(Alarme, 220);
+  digitalWrite(Led, HIGH);
+  delay(400);
+  digitalWrite(Led, LOW);
+  delay(400);
+  TocarAlarme(2);
+  
+}
+
